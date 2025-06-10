@@ -2,103 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiz Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz Hub - Overall Level</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f0f0f0;
       text-align: center;
-      padding: 30px;
-      background-color: #f0f8ff;
     }
-
     h1 {
-      font-size: 2em;
       margin-bottom: 10px;
     }
-
-    .levelDisplay {
-      font-size: 1.2em;
-      margin-bottom: 20px;
+    #overallLevel {
+      font-size: 1.5em;
+      margin: 20px 0;
+      color: #333;
     }
-
-    progress {
-      width: 300px;
-      height: 20px;
-    }
-
     ul {
       list-style: none;
       padding: 0;
+      margin: 30px 0 0 0;
     }
-
-    li a {
-      display: inline-block;
-      margin: 8px;
-      font-size: 1.1em;
+    li {
+      margin: 10px 0;
+    }
+    a {
       text-decoration: none;
-      color: #3366cc;
+      color: #0066cc;
+      font-size: 1.2em;
     }
-
-    li a:hover {
+    a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>🎓 Overall Learning Progress</h1>
-  <div class="levelDisplay" id="overallLevel">Loading...</div>
-  <progress id="progressBar" value="0" max="1"></progress>
+  <h1>Welcome to the Quiz Hub!</h1>
+  <p id="overallLevel">Loading overall level...</p>
 
-  <h2>📚 Choose a Quiz</h2>
   <ul>
-    <li><a href="https://phennylalanine.github.io/Typing-Challenge-Months/" target="_blank">📅 Months Quiz</a></li>
-    <li><a href="https://phennylalanine.github.io/Subjectsa/" target="_blank">📘 Subjects Quiz</a></li>
-    <li><a href="https://phennylalanine.github.io/Animals/" target="_blank">🐾 Animals Quiz</a></li>
-    <li><a href="https://phennylalanine.github.io/Verbs/" target="_blank">🏃 Verbs Quiz</a></li>
+    <li><a href="https://phennylalanine.github.io/Typing-Challenge-Months/" target="_blank" rel="noopener noreferrer">Months Quiz</a></li>
+    <li><a href="https://phennylalanine.github.io/I-play-5th-grade-subjects/" target="_blank" rel="noopener noreferrer">Subjects Quiz</a></li>
   </ul>
 
-  <script>
-    const baseXP = 1;
-
-    // List of quiz keys to check (used in localStorage)
-    const quizKeys = ["months", "subjects", "animals", "verbs"];
-
-    function getXPForLevel(level) {
-      return level * level * baseXP;
-    }
-
-    function getTotalXP(level) {
-      let total = 0;
-      for (let i = 1; i < level; i++) {
-        total += i * i * baseXP;
-      }
-      return total;
-    }
-
-    function computeLevelFromXP(xp) {
-      let level = 1;
-      while (xp >= getXPForLevel(level)) {
-        xp -= getXPForLevel(level);
-        level++;
-      }
-      return { level, xpLeft: xp, xpNeeded: getXPForLevel(level) };
-    }
-
-    function loadCombinedXP() {
-      let totalXP = 0;
-      quizKeys.forEach(key => {
-        const quizXP = parseInt(localStorage.getItem(`${key}_xp`) || "0", 10);
-        totalXP += quizXP;
-      });
-      return totalXP;
-    }
-
-    const totalXP = loadCombinedXP();
-    const { level, xpLeft, xpNeeded } = computeLevelFromXP(totalXP);
-
-    document.getElementById("overallLevel").textContent =
-      `Overall Level: ${level} (XP: ${xpLeft}/${xpNeeded})`;
-
-    document.getElementById("progressBar").value = xpLeft;
-    document.getEleme
+  <script src="script.js"></script>
+</body>
+</html>
