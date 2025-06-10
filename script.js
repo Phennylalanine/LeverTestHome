@@ -3,10 +3,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Add all your quiz keys here
   const quizKeys = [
-    "months_level",
-    "subjects_level",
-    "activities_level",
-    "quizD_level" // Replace with your actual key names
+    "events_level",
+    // Replace with your actual key names
   ];
 
   // Sum all levels and apply the multiplier
